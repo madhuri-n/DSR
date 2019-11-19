@@ -1,12 +1,22 @@
 library(cluster)
 library(ggplot2)
 
-data <- read.csv("C:/Users/Sangu/Desktop/iris.csv")
-mydata <- data[,1:2]
-
-
+x<-c(185,170,168,179,182,188)
+y<-c(72,56,60,68,72,77)
+clsample<-data.frame(x,y)
+clsample
+dim(clsample)
+clsample1<-data.matrix(clsample)
+clsample1
+cldata<-clsample1[,1:2]
+cldata
 #Elbow Curve
-km=kmeans(mydata,4,nstart=10)
+wss<-vector(mode="numeric",length=6)
+wss
+
+
+km=kmeans(cldata,2,nstart=10)
+km
 km$cluster
 km$centers
 km$withinss
@@ -14,7 +24,8 @@ km$betweenss
 km$totss
 
 #Visualizing clusters
-plot(mydata[km$cluster ==1,],col="red",xlim=c(min(mydata[,1]),max(mydata[,1])),ylim=c(min(mydata[,2]),max(mydata[,2])))
-points(mydata[km$cluster == 2,],col="blue")
-points(mydata[km$cluster == 3,],col="green")
-points(mydata[km$cluster == 4,],col="black")
+
+plot(cldata[km$cluster ==1,],col="red",xlim=c(min(cldata[,1]),max(cldata[,1])),ylim=c(min(cldata[,2]),max(cldata[,2])))
+points(cldata[km$cluster == 2,],col="blue")
+
+
